@@ -126,7 +126,7 @@ public class Agent : MonoBehaviour
 
     private Vector3 ComputeForce()
     {
-        var force = CalculateGoalForce(maxSpeed: 5) + CalculateAgentForce() + CalculateWallForce();
+        var force = CalculateGoalForce() + CalculateAgentForce() + CalculateWallForce();
 
         if (force != Vector3.zero)
         {
@@ -137,7 +137,7 @@ public class Agent : MonoBehaviour
         }
     }
     
-    private Vector3 CalculateGoalForce(float maxSpeed)
+    private Vector3 CalculateGoalForce()
     {
         if (path.Count == 0)
         {
@@ -145,7 +145,7 @@ public class Agent : MonoBehaviour
         }
 
         var temp = path[0] - transform.position;
-        var desiredVel = temp.normalized * Mathf.Min(temp.magnitude, maxSpeed);
+        var desiredVel = temp.normalized * Parameters.DESIRED_SPEED;
         var actualVelocity = rb.velocity;
         return mass * (desiredVel - actualVelocity) / Parameters.T;
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public struct Parameters
 {
+    public const float DESIRED_SPEED = 1.5f;
     public const float T = 0.5f;
     public const float A = 2000f;
     public const float B = 0.08f;
